@@ -1,19 +1,33 @@
-Pipeline de Análisis de Elasticidad de Precio: SQL a Power BI
-🚀 Resumen del Proyecto
-Este proyecto implementa una solución integral para calcular la Elasticidad de la Demanda, integrando ingeniería de datos en MySQL, automatización en Python y visualización estratégica en Power BI. El objetivo fue determinar la sensibilidad de los consumidores ante variaciones de precio en un entorno de e-commerce real.
+# 🚀 Análisis de Elasticidad de Precios: Pipeline End-to-End
 
-🛠️ Stack Tecnológico
-SQL (MySQL): Diseño de arquitectura, saneamiento de datos y establecimiento de integridad referencial.
+Este proyecto documenta la transición de datos crudos hacia **decisiones estratégicas de negocio**, integrando un flujo de trabajo (pipeline) profesional desde la base de datos hasta la visualización.
 
-Python (Pandas, SQLAlchemy): Creación de un pipeline automatizado para la carga masiva de datos (112k+ registros) y limpieza técnica de outliers.
+---
 
-Power BI (DAX): Desarrollo de medidas dinámicas de elasticidad y dashboards interactivos para la toma de decisiones.
+### 1. 🏗️ Ingeniería de Datos (MySQL)
+El éxito del análisis dependió de establecer una base de datos íntegra. El sistema original presentaba obstáculos críticos como **datos huérfanos** y **duplicados** en los códigos de geolocalización.
 
-📊 Hallazgos Clave
-Se realizó una comparación entre herramientas para validar la consistencia del análisis:
+* **Acción:** Diseñé una **tabla maestra de referencia** basada en la entidad `geolocation`.
+* **Resultado:** Logré sanear el modelo, garantizando la **integridad referencial** necesaria para que los cálculos posteriores fueran exactos.
 
-Python: Coeficiente de -19.57 (sensibilidad estadística pura).
+### 2. 🐍 Automatización y Limpieza (Python / Jupyter)
+Utilicé Python para manejar el volumen masivo de datos (más de **112,000 registros**), optimizando procesos que superan la capacidad de Excel.
 
-Power BI: Coeficiente de -3.93 (valor refinado para proyecciones operativas).
+* **Proceso:** Creé un script en **Jupyter Notebook** (`ImportSQL.ipynb`) que conecta directamente a SQL usando `sqlalchemy`.
+* **Optimización:** Implementé el parámetro `chunksize=1000` para asegurar una carga de datos fluida y eficiente en la memoria.
+* **Valor Obtenido:** Un coeficiente de **-19.57**, que representa la sensibilidad estadística pura tras la limpieza técnica.
 
-Conclusión: La categoría es altamente elástica, lo que exige precaución en ajustes de precio sin soporte promocional.
+### 3. 📊 Dashboard e Insights (Power BI)
+Aterricé la estadística en una herramienta de visualización estratégica para la toma de decisiones.
+
+* **Modelado DAX:** Creé una medida de **"Elasticidad Real"** que filtra el ruido estacional.
+* **Resultado:** Un valor de **-3.93**, que es la métrica más refinada y cercana a la **realidad operativa** del negocio.
+
+---
+
+### 💡 Conclusión Estratégica
+Al comparar las herramientas, la conclusión es contundente:
+1. **Excel (-28.71):** Identifica la **volatilidad máxima** debido a picos extremos en datos crudos.
+2. **Power BI (-3.93):** Provee el número para **proyecciones financieras reales**.
+
+**Diagnóstico Final:** La categoría es **altamente elástica**. Esto significa que la demanda es extremadamente sensible al precio; cualquier aumento debe ser estratégico y acompañado de promociones para mitigar la caída en el volumen.
